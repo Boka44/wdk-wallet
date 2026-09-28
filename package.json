@@ -1,7 +1,8 @@
 {
   "name": "@tetherto/wdk-wallet",
   "version": "1.0.0-beta.21",
-  "description": "A simple package to manage BIP-32 wallets.",
+  "description": "Base wallet and protocol classes for WDK (Wallet Development Kit) by Tether. For internal use only.",
+  "homepage": "https://docs.wdk.tether.io/",
   "keywords": [
     "wdk",
     "wallet",
