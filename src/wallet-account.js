@@ -23,6 +23,7 @@ import { NotImplementedError } from './errors.js'
 /** @typedef {import('./wallet-account-read-only.js').TransferOptions} TransferOptions */
 /** @typedef {import('./wallet-account-read-only.js').TransferResult} TransferResult */
 
+/** @typedef {import('./errors.js').DisposalError} DisposalError */
 /** @typedef {import('./errors.js').InvalidTokenError} InvalidTokenError */
 /** @typedef {import('./errors.js').MaximumFeeExceededError} MaximumFeeExceededError */
 /** @typedef {import('./errors.js').ProviderError} ProviderError */
@@ -46,6 +47,15 @@ import { NotImplementedError } from './errors.js'
  * @template [TSignedTransaction=unknown]
  */
 export class IWalletAccount extends IWalletAccountReadOnly {
+  /**
+   * True if the account has been disposed.
+   *
+   * @type {boolean}
+   */
+  get disposed () {
+    throw new NotImplementedError('disposed')
+  }
+
   /**
    * The derivation path of this account (see [BIP-44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki)),
    * or null if the account's signer is not bound to a BIP-44 position (e.g. private-key signers).
@@ -71,6 +81,7 @@ export class IWalletAccount extends IWalletAccountReadOnly {
    *
    * @param {string} message - The message to sign.
    * @returns {Promise<string>} The message's signature.
+   * @throws {DisposalError} If the account has been disposed.
    */
   async sign (message) {
     throw new NotImplementedError('sign(message)')
@@ -82,6 +93,7 @@ export class IWalletAccount extends IWalletAccountReadOnly {
    * @param {Transaction} tx - The transaction to sign.
    * @returns {Promise<TSignedTransaction>} The signed transaction.
    * @throws {ValueError} If the transaction is not valid.
+   * @throws {DisposalError} If the account has been disposed.
    */
   async signTransaction (tx) {
     throw new NotImplementedError('signTransaction(tx)')
@@ -108,6 +120,7 @@ export class IWalletAccount extends IWalletAccountReadOnly {
    * @throws {ProviderError} If the provider fails to perform the transaction.
    * @throws {TransactionError} If the transaction fails with an error.
    * @throws {MaximumFeeExceededError} If the the costs of the transaction exceeds the transaction max. fee option.
+   * @throws {DisposalError} If the account has been disposed.
    */
   async sendTransaction (tx) {
     throw new NotImplementedError('sendTransaction(tx)')
@@ -138,6 +151,7 @@ export class IWalletAccount extends IWalletAccountReadOnly {
    * @throws {ProviderError} If the provider fails to perform the transfer.
    * @throws {TransferError} If the transfer fails with an error.
    * @throws {MaximumFeeExceededError} If the the costs of the transfer exceeds the transfer max. fee option.
+   * @throws {DisposalError} If the account has been disposed.
    */
   async transfer (options) {
     throw new NotImplementedError('transfer(options)')

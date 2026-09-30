@@ -111,6 +111,18 @@ export default class WalletManager {
      * @type {WalletConfig}
      */
     this._config = config
+
+    /** @private */
+    this._disposed = false
+  }
+
+  /**
+   * True if the wallet manager has been disposed.
+   *
+   * @type {boolean}
+   */
+  get disposed () {
+    return this._disposed
   }
 
   /**
@@ -260,6 +272,8 @@ export default class WalletManager {
    * Disposes all wallet accounts, clearing secret material from memory.
    */
   dispose () {
+    if (this._disposed) return
+
     for (const account of Object.values(this._accounts)) {
       if (account.keyPair?.privateKey) {
         account.dispose()
@@ -267,5 +281,7 @@ export default class WalletManager {
     }
 
     this._accounts = {}
+
+    this._disposed = true
   }
 }

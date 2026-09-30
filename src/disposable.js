@@ -18,6 +18,15 @@ import { NotImplementedError } from './errors.js'
 /** @interface */
 export class IDisposable {
   /**
+   * True if the object has been disposed.
+   *
+   * @type {boolean}
+   */
+  get disposed () {
+    throw new NotImplementedError('disposed')
+  }
+
+  /**
    * Disposes the object along with all its data (cleaning up any sensitive field from memory).
    */
   dispose () {

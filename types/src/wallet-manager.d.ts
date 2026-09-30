@@ -68,6 +68,14 @@ export default abstract class WalletManager<TSigner extends ISigner = ISigner> i
      * @type {WalletConfig}
      */
     protected _config: WalletConfig;
+    /** @private */
+    private _disposed;
+    /**
+     * True if the wallet manager has been disposed.
+     *
+     * @type {boolean}
+     */
+    get disposed(): boolean;
     /**
      * The seed of the wallet.
      *
