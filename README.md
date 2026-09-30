@@ -2,7 +2,7 @@
 
 ## What This Does
 
-Base classes for the wallet and protocol modules in the [Wallet Development Kit (WDK)](https://docs.wallet.tether.io).
+Base classes for the wallet and protocol modules in the [WDK (Wallet Development Kit)](https://docs.wdk.tether.io/) by Tether.
 
 ## Who Should Use This
 
@@ -32,7 +32,7 @@ This module is for internal use only. If you want to build a wallet, use one of 
 
 ## Learn More
 
-For full docs, visit [docs.wallet.tether.io](https://docs.wallet.tether.io)
+For general WDK documentation, visit [docs.wdk.tether.io](https://docs.wdk.tether.io/)
 
 ## License
 
