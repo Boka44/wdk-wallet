@@ -6,12 +6,6 @@
  */
 export interface IWalletAccount<TSignedTransaction = unknown> extends IWalletAccountReadOnly, IDisposable {
     /**
-     * True if the account has been disposed.
-     *
-     * @type {boolean}
-     */
-    get disposed(): boolean;
-    /**
      * The derivation path of this account (see [BIP-44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki)),
      * or null if the account's signer is not bound to a BIP-44 position (e.g. private-key signers).
      *

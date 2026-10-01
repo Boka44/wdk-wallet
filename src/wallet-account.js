@@ -13,10 +13,9 @@
 // limitations under the License.
 'use strict'
 
-import { IWalletAccountReadOnly } from './wallet-account-read-only.js'
-
 import { NotImplementedError } from './errors.js'
 
+/** @typedef {import('./wallet-account-read-only.js').IWalletAccountReadOnly} IWalletAccountReadOnly */
 /** @typedef {import('./wallet-account-read-only.js').Transaction} Transaction */
 /** @typedef {import('./wallet-account-read-only.js').TransactionResult} TransactionResult */
 
@@ -46,16 +45,7 @@ import { NotImplementedError } from './errors.js'
  * @extends {IDisposable}
  * @template [TSignedTransaction=unknown]
  */
-export class IWalletAccount extends IWalletAccountReadOnly {
-  /**
-   * True if the account has been disposed.
-   *
-   * @type {boolean}
-   */
-  get disposed () {
-    throw new NotImplementedError('disposed')
-  }
-
+export class IWalletAccount {
   /**
    * The derivation path of this account (see [BIP-44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki)),
    * or null if the account's signer is not bound to a BIP-44 position (e.g. private-key signers).

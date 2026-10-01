@@ -13,9 +13,9 @@
 // limitations under the License.
 'use strict'
 
-import { InvalidTokenError, MaximumFeeExceededError, NoSuchElementError, NotImplementedError, ProviderError, ProviderRequiredError, UnsupportedOperationError, ValueError, WdkError } from '../errors.js'
+import { DisposalError, InvalidTokenError, MaximumFeeExceededError, NoSuchElementError, NotImplementedError, ProviderError, ProviderRequiredError, UnsupportedOperationError, ValueError, WdkError } from '../errors.js'
 
-export { InvalidTokenError, MaximumFeeExceededError, NoSuchElementError, NotImplementedError, ProviderError, ProviderRequiredError, UnsupportedOperationError, ValueError, WdkError }
+export { DisposalError, InvalidTokenError, MaximumFeeExceededError, NoSuchElementError, NotImplementedError, ProviderError, ProviderRequiredError, UnsupportedOperationError, ValueError, WdkError }
 
 /**
  * @typedef {Object} SwapErrorOptions

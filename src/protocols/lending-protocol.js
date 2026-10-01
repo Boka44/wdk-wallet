@@ -20,6 +20,7 @@ import { NotImplementedError } from './errors.js'
 /** @typedef {import('../wallet-account.js').IWalletAccount} IWalletAccount */
 
 /** @typedef {import('./errors.js').AccountRequiredError} AccountRequiredError */
+/** @typedef {import('./errors.js').DisposalError} DisposalError */
 /** @typedef {import('./errors.js').BorrowError} BorrowError */
 /** @typedef {import('./errors.js').InvalidTokenError} InvalidTokenError */
 /** @typedef {import('./errors.js').MaximumFeeExceededError} MaximumFeeExceededError */
@@ -91,6 +92,7 @@ export class ILendingProtocol {
    * @param {SupplyOptions} options - The supply's options.
    * @returns {Promise<SupplyResult>} The supply's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a supply.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the supply options are not valid.
    * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
    * @throws {ProviderRequiredError} If the method requires a provider.
@@ -124,6 +126,7 @@ export class ILendingProtocol {
    * @param {WithdrawOptions} options - The withdraw's options.
    * @returns {Promise<WithdrawResult>} The withdraw's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a withdraw.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the withdraw options are not valid.
    * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
    * @throws {ProviderRequiredError} If the method requires a provider.
@@ -157,6 +160,7 @@ export class ILendingProtocol {
    * @param {BorrowOptions} options - The borrow's options.
    * @returns {Promise<BorrowResult>} The borrow's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a borrow.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the borrow options are not valid.
    * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
    * @throws {ProviderRequiredError} If the method requires a provider.
@@ -190,6 +194,7 @@ export class ILendingProtocol {
    * @param {RepayOptions} options - The repay's options.
    * @returns {Promise<RepayResult>} The repay's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a repay.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the repay options are not valid.
    * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
    * @throws {ProviderRequiredError} If the method requires a provider.
@@ -253,6 +258,7 @@ export default class LendingProtocol {
    * @param {SupplyOptions} options - The supply's options.
    * @returns {Promise<SupplyResult>} The supply's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a supply.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the supply options are not valid.
    * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
    * @throws {ProviderRequiredError} If the method requires a provider.
@@ -287,6 +293,7 @@ export default class LendingProtocol {
    * @param {WithdrawOptions} options - The withdraw's options.
    * @returns {Promise<WithdrawResult>} The withdraw's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a withdraw.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the withdraw options are not valid.
    * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
    * @throws {ProviderRequiredError} If the method requires a provider.
@@ -321,6 +328,7 @@ export default class LendingProtocol {
    * @param {BorrowOptions} options - The borrow's options.
    * @returns {Promise<BorrowResult>} The borrow's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a borrow.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the borrow options are not valid.
    * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
    * @throws {ProviderRequiredError} If the method requires a provider.
@@ -355,6 +363,7 @@ export default class LendingProtocol {
    * @param {RepayOptions} options - The borrow's options.
    * @returns {Promise<RepayResult>} The repay's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a repay.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the repay options are not valid.
    * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
    * @throws {ProviderRequiredError} If the method requires a provider.

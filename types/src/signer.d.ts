@@ -31,6 +31,7 @@ export class ISigner extends IDisposable {
      * @returns {Promise<ISigner>} The derived signer.
      * @throws {UnsupportedOperationError} If the signer does not support account derivation.
      * @throws {ValueError} If the path is not valid.
+     * @throws {DisposalError} If the signer has been disposed.
      */
     derive(path: string): Promise<ISigner>;
     /**
@@ -44,10 +45,12 @@ export class ISigner extends IDisposable {
      *
      * @param {string} message - The message to sign.
      * @returns {Promise<string>} The message's signature.
+     * @throws {DisposalError} If the signer has been disposed.
      */
     sign(message: string): Promise<string>;
 }
 export type KeyPair = import("./wallet-account.js").KeyPair;
+export type DisposalError = import("./errors.js").DisposalError;
 import { IDisposable } from "./disposable.js";
 export type UnsupportedOperationError = import("./errors.js").UnsupportedOperationError;
 export type ValueError = import("./errors.js").ValueError;

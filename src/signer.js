@@ -18,6 +18,7 @@ import { NotImplementedError } from './errors.js'
 import { IDisposable } from './disposable.js'
 
 /** @typedef {import('./wallet-account.js').KeyPair} KeyPair */
+/** @typedef {import('./errors.js').DisposalError} DisposalError */
 /** @typedef {import('./errors.js').UnsupportedOperationError} UnsupportedOperationError */
 /** @typedef {import('./errors.js').ValueError} ValueError */
 
@@ -63,6 +64,7 @@ export class ISigner extends IDisposable {
    * @returns {Promise<ISigner>} The derived signer.
    * @throws {UnsupportedOperationError} If the signer does not support account derivation.
    * @throws {ValueError} If the path is not valid.
+   * @throws {DisposalError} If the signer has been disposed.
    */
   async derive (path) {
     throw new NotImplementedError('derive(path)')
@@ -82,6 +84,7 @@ export class ISigner extends IDisposable {
    *
    * @param {string} message - The message to sign.
    * @returns {Promise<string>} The message's signature.
+   * @throws {DisposalError} If the signer has been disposed.
    */
   async sign (message) {
     throw new NotImplementedError('sign(message)')

@@ -20,6 +20,7 @@ import { NotImplementedError } from './errors.js'
 /** @typedef {import('../wallet-account.js').IWalletAccount} IWalletAccount */
 
 /** @typedef {import('./errors.js').AccountRequiredError} AccountRequiredError */
+/** @typedef {import('./errors.js').DisposalError} DisposalError */
 /** @typedef {import('./errors.js').InvalidTokenError} InvalidTokenError */
 /** @typedef {import('./errors.js').MaximumFeeExceededError} MaximumFeeExceededError */
 /** @typedef {import('./errors.js').ReadOnlyAccountRequiredError} ReadOnlyAccountRequiredError */
@@ -73,6 +74,7 @@ export class ISwapProtocol {
    * @param {SwapOptions} options - The swap's options.
    * @returns {Promise<SwapResult>} The swap's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a swap.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the swap options are not valid.
    * @throws {InvalidTokenError} If the input or output tokens are not valid ERC 20 token's addresses.
    * @throws {ProviderRequiredError} If the method requires a provider.
@@ -146,6 +148,7 @@ export default class SwapProtocol {
    * @param {SwapOptions} options - The swap's options.
    * @returns {Promise<SwapResult>} The swap's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a swap.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the swap options are not valid.
    * @throws {InvalidTokenError} If the input or output tokens are not valid ERC 20 token's addresses.
    * @throws {ProviderRequiredError} If the method requires a provider.

@@ -354,6 +354,7 @@ export type SdaErrorOptions = {
      */
     reason: SdaErrorReason;
 };
+import { DisposalError } from '../errors.js';
 import { InvalidTokenError } from '../errors.js';
 import { MaximumFeeExceededError } from '../errors.js';
 import { NoSuchElementError } from '../errors.js';
@@ -363,4 +364,4 @@ import { ProviderRequiredError } from '../errors.js';
 import { UnsupportedOperationError } from '../errors.js';
 import { ValueError } from '../errors.js';
 import { WdkError } from '../errors.js';
-export { InvalidTokenError, MaximumFeeExceededError, NoSuchElementError, NotImplementedError, ProviderError, ProviderRequiredError, UnsupportedOperationError, ValueError, WdkError };
+export { DisposalError, InvalidTokenError, MaximumFeeExceededError, NoSuchElementError, NotImplementedError, ProviderError, ProviderRequiredError, UnsupportedOperationError, ValueError, WdkError };

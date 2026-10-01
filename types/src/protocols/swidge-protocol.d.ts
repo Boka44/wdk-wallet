@@ -22,6 +22,7 @@ export interface ISwidgeProtocol extends ISwapProtocol, IBridgeProtocol {
      * @param {SwidgeProtocolConfig} [config] - Optional provider-specific execution configuration.
      * @returns {Promise<SwidgeResult>} The swidge execution result.
      * @throws {AccountRequiredError} If the protocol requires a full account to perform a swidge.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the swidge options are not valid.
      * @throws {InvalidTokenError} If the from or to tokens are not valid ERC 20 token's addresses.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -106,6 +107,7 @@ export default abstract class SwidgeProtocol implements ISwidgeProtocol, ISwapPr
      * @param {SwapOptions} options - The swap's options.
      * @returns {Promise<SwapResult>} The swap's result.
      * @throws {AccountRequiredError} If the protocol requires a full account to perform a swap.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the swap options are not valid.
      * @throws {InvalidTokenError} If the input or output tokens are not valid ERC 20 token's addresses.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -133,6 +135,7 @@ export default abstract class SwidgeProtocol implements ISwidgeProtocol, ISwapPr
      * @param {BridgeOptions} options - The bridge's options.
      * @returns {Promise<BridgeResult>} The bridge's result.
      * @throws {AccountRequiredError} If the protocol requires a full account to perform a bridge.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the bridge options are not valid.
      * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -178,6 +181,7 @@ export default abstract class SwidgeProtocol implements ISwidgeProtocol, ISwapPr
      * @param {SwidgeProtocolConfig} [config] - Optional provider-specific execution configuration.
      * @returns {Promise<SwidgeResult>} The swidge execution result.
      * @throws {AccountRequiredError} If the protocol requires a full account to perform a swidge.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the swidge options are not valid.
      * @throws {InvalidTokenError} If the from or to tokens are not valid ERC 20 token's addresses.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -228,6 +232,7 @@ export type IBridgeProtocol = import("./bridge-protocol.js").IBridgeProtocol;
 export type BridgeOptions = import("./bridge-protocol.js").BridgeOptions;
 export type BridgeResult = import("./bridge-protocol.js").BridgeResult;
 export type AccountRequiredError = import("./errors.js").AccountRequiredError;
+export type DisposalError = import("./errors.js").DisposalError;
 export type InvalidTokenError = import("./errors.js").InvalidTokenError;
 export type MaximumFeeExceededError = import("./errors.js").MaximumFeeExceededError;
 export type NoSuchElementError = import("./errors.js").NoSuchElementError;

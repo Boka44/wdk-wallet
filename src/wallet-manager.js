@@ -22,6 +22,7 @@ import { InvalidSignerError, NoSuchElementError, NotImplementedError, ValueError
 /** @typedef {import('./signer.js').ISigner} ISigner */
 /** @typedef {import('./disposable.js').IDisposable} IDisposable */
 
+/** @typedef {import('./errors.js').DisposalError} DisposalError */
 /** @typedef {import('./errors.js').ProviderError} ProviderError */
 /** @typedef {import('./errors.js').ProviderRequiredError} ProviderRequiredError */
 
@@ -163,6 +164,7 @@ export default class WalletManager {
    * @param {TSigner} signer - The signer.
    * @returns {this} The wallet manager.
    * @throws {ValueError} If the signer name is an empty or blank string.
+   * @throws {DisposalError} If the wallet manager has been disposed.
    */
   addSigner (signerName, signer) {
     if (!signerName.trim()) {
@@ -221,6 +223,7 @@ export default class WalletManager {
    * @throws {ValueError} If the index is not valid.
    * @throws {NoSuchElementError} If a signer name is given but no signer exists with that name.
    * @throws {InvalidSignerError} If the signer doesn't support account derivation.
+   * @throws {DisposalError} If the wallet manager or the given signer has been disposed.
    */
 
   /**
@@ -233,6 +236,7 @@ export default class WalletManager {
    * @param {string} signerName - The signer name registered via {@link addSigner}.
    * @returns {Promise<IWalletAccount>} The account.
    * @throws {NoSuchElementError} If no signer exists with the given name.
+   * @throws {DisposalError} If the wallet manager or the given signer has been disposed.
    */
 
   /** @abstract */
@@ -251,6 +255,7 @@ export default class WalletManager {
    * @throws {ValueError} If the path is not valid.
    * @throws {NoSuchElementError} If a signer name is given but no signer exists with that name.
    * @throws {InvalidSignerError} If the signer doesn't support account derivation.
+   * @throws {DisposalError} If the wallet manager or the given signer has been disposed.
    */
   async getAccountByPath (path, options = {}) {
     throw new NotImplementedError('getAccountByPath(path, options?)')
