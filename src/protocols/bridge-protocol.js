@@ -20,6 +20,7 @@ import { NotImplementedError } from './errors.js'
 /** @typedef {import('../wallet-account.js').IWalletAccount} IWalletAccount */
 
 /** @typedef {import('./errors.js').AccountRequiredError} AccountRequiredError */
+/** @typedef {import('./errors.js').DisposalError} DisposalError */
 /** @typedef {import('./errors.js').BridgeError} BridgeError */
 /** @typedef {import('./errors.js').InvalidTokenError} InvalidTokenError */
 /** @typedef {import('./errors.js').MaximumFeeExceededError} MaximumFeeExceededError */
@@ -56,6 +57,7 @@ export class IBridgeProtocol {
    * @param {BridgeOptions} options - The bridge's options.
    * @returns {Promise<BridgeResult>} The bridge's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a bridge.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the bridge options are not valid.
    * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
    * @throws {ProviderRequiredError} If the method requires a provider.
@@ -129,6 +131,7 @@ export default class BridgeProtocol {
    * @param {BridgeOptions} options - The bridge's options.
    * @returns {Promise<BridgeResult>} The bridge's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a bridge.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the bridge options are not valid.
    * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
    * @throws {ProviderRequiredError} If the method requires a provider.

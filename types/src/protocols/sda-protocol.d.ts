@@ -44,6 +44,7 @@ export interface ISdaProtocol {
      * @param {SdaCreateDepositAddressOptions} options - The address creation options.
      * @returns {Promise<SdaDepositAddress[]>} The created deposit addresses, one per distinct address.
      * @throws {AccountRequiredError} If the protocol requires a full account to create a new deposit address.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the create deposit address options are not valid.
      * @throws {ProviderRequiredError} If the method requires a provider.
      * @throws {ProviderError} If the provider fails to create a new deposit address.
@@ -60,6 +61,7 @@ export interface ISdaProtocol {
      * @returns {Promise<string>} The derived deposit address.
      * @throws {UnsupportedOperationError} If the protocol does not support this operation.
      * @throws {AccountRequiredError} If the protocol requires a full account to derive a deposit address.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the create deposit address options are not valid.
      * @throws {ProviderRequiredError} If the method requires a provider.
      * @throws {ProviderError} If the provider fails to derive the deposit address.
@@ -87,6 +89,7 @@ export interface ISdaProtocol {
      * @returns {Promise<SdaDepositAddress>} The refreshed deposit address descriptor (with the new `expiry`).
      * @throws {UnsupportedOperationError} If the protocol does not support this operation.
      * @throws {AccountRequiredError} If the protocol requires a full account to renew a deposit address.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the id is not valid.
      * @throws {NoSuchElementError} If no deposit address exists for the given id.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -138,6 +141,7 @@ export interface ISdaProtocol {
      * @returns {Promise<SdaRecoveryResult>} The recovery outcome.
      * @throws {UnsupportedOperationError} If the protocol does not support this operation.
      * @throws {AccountRequiredError} If the protocol requires a full account to recover a deposit address.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the id is not valid.
      * @throws {NoSuchElementError} If no deposit address exists for the given id or address.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -153,6 +157,7 @@ export interface ISdaProtocol {
      * @returns {Promise<void>} Resolves once the address has been disabled.
      * @throws {UnsupportedOperationError} If the protocol does not support this operation.
      * @throws {AccountRequiredError} If the protocol requires a full account to disable a deposit address.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the id is not valid.
      * @throws {NoSuchElementError} If no deposit address exists for the given id.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -234,6 +239,7 @@ export default abstract class SdaProtocol implements ISdaProtocol {
      * @param {SdaCreateDepositAddressOptions} options - The address creation options.
      * @returns {Promise<SdaDepositAddress[]>} The created deposit addresses, one per distinct address.
      * @throws {AccountRequiredError} If the protocol requires a full account to create a new deposit address.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the create deposit address options are not valid.
      * @throws {ProviderRequiredError} If the method requires a provider.
      * @throws {ProviderError} If the provider fails to create a new deposit address.
@@ -250,6 +256,7 @@ export default abstract class SdaProtocol implements ISdaProtocol {
      * @returns {Promise<string>} The derived deposit address.
      * @throws {UnsupportedOperationError} If the protocol does not support this operation.
      * @throws {AccountRequiredError} If the protocol requires a full account to derive a deposit address.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the create deposit address options are not valid.
      * @throws {ProviderRequiredError} If the method requires a provider.
      * @throws {ProviderError} If the provider fails to derive the deposit address.
@@ -277,6 +284,7 @@ export default abstract class SdaProtocol implements ISdaProtocol {
      * @returns {Promise<SdaDepositAddress>} The refreshed deposit address descriptor (with the new `expiry`).
      * @throws {UnsupportedOperationError} If the protocol does not support this operation.
      * @throws {AccountRequiredError} If the protocol requires a full account to renew a deposit address.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the id is not valid.
      * @throws {NoSuchElementError} If no deposit address exists for the given id.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -328,6 +336,7 @@ export default abstract class SdaProtocol implements ISdaProtocol {
      * @returns {Promise<SdaRecoveryResult>} The recovery outcome.
      * @throws {UnsupportedOperationError} If the protocol does not support this operation.
      * @throws {AccountRequiredError} If the protocol requires a full account to recover a deposit address.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the id is not valid.
      * @throws {NoSuchElementError} If no deposit address exists for the given id or address.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -343,6 +352,7 @@ export default abstract class SdaProtocol implements ISdaProtocol {
      * @returns {Promise<void>} Resolves once the address has been disabled.
      * @throws {UnsupportedOperationError} If the protocol does not support this operation.
      * @throws {AccountRequiredError} If the protocol requires a full account to disable a deposit address.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the id is not valid.
      * @throws {NoSuchElementError} If no deposit address exists for the given id.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -354,6 +364,7 @@ export default abstract class SdaProtocol implements ISdaProtocol {
 export type IWalletAccountReadOnly = import("../wallet-account-read-only.js").IWalletAccountReadOnly;
 export type IWalletAccount = import("../wallet-account.js").IWalletAccount;
 export type AccountRequiredError = import("./errors.js").AccountRequiredError;
+export type DisposalError = import("./errors.js").DisposalError;
 export type InvalidTokenError = import("./errors.js").InvalidTokenError;
 export type NoSuchElementError = import("./errors.js").NoSuchElementError;
 export type ReadOnlyAccountRequiredError = import("./errors.js").ReadOnlyAccountRequiredError;

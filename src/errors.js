@@ -340,3 +340,19 @@ export class TimeoutError extends WdkError {
     this.name = 'TimeoutError'
   }
 }
+
+/**
+ * Thrown when an operation is attempted on an object that has been disposed.
+ */
+export class DisposalError extends WdkError {
+  /**
+   * Creates a new disposal error.
+   *
+   * @param {string} message - The error's message.
+   */
+  constructor (message) {
+    super(message)
+
+    this.name = 'DisposalError'
+  }
+}

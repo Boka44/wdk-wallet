@@ -68,6 +68,14 @@ export default abstract class WalletManager<TSigner extends ISigner = ISigner> i
      * @type {WalletConfig}
      */
     protected _config: WalletConfig;
+    /** @private */
+    private _disposed;
+    /**
+     * True if the wallet manager has been disposed.
+     *
+     * @type {boolean}
+     */
+    get disposed(): boolean;
     /**
      * The seed of the wallet.
      *
@@ -81,6 +89,7 @@ export default abstract class WalletManager<TSigner extends ISigner = ISigner> i
      * @param {TSigner} signer - The signer.
      * @returns {this} The wallet manager.
      * @throws {ValueError} If the signer name is an empty or blank string.
+     * @throws {DisposalError} If the wallet manager has been disposed.
      */
     addSigner(signerName: string, signer: TSigner): this;
     /**
@@ -110,6 +119,7 @@ export default abstract class WalletManager<TSigner extends ISigner = ISigner> i
      * @throws {ValueError} If the index is not valid.
      * @throws {NoSuchElementError} If a signer name is given but no signer exists with that name.
      * @throws {InvalidSignerError} If the signer doesn't support account derivation.
+     * @throws {DisposalError} If the wallet manager or the given signer has been disposed.
      */
     abstract getAccount(index?: number, options?: {
         signerName?: string;
@@ -124,6 +134,7 @@ export default abstract class WalletManager<TSigner extends ISigner = ISigner> i
      * @param {string} signerName - The signer name registered via {@link addSigner}.
      * @returns {Promise<IWalletAccount>} The account.
      * @throws {NoSuchElementError} If no signer exists with the given name.
+     * @throws {DisposalError} If the wallet manager or the given signer has been disposed.
      */
     abstract getAccount(signerName: string): Promise<IWalletAccount>;
     /**
@@ -137,6 +148,7 @@ export default abstract class WalletManager<TSigner extends ISigner = ISigner> i
      * @throws {ValueError} If the path is not valid.
      * @throws {NoSuchElementError} If a signer name is given but no signer exists with that name.
      * @throws {InvalidSignerError} If the signer doesn't support account derivation.
+     * @throws {DisposalError} If the wallet manager or the given signer has been disposed.
      */
     abstract getAccountByPath(path: string, options?: {
         signerName?: string;
@@ -157,6 +169,7 @@ export default abstract class WalletManager<TSigner extends ISigner = ISigner> i
 }
 export type IWalletAccount = import("./wallet-account.js").IWalletAccount;
 export type ISigner = import("./signer.js").ISigner;
+export type DisposalError = import("./errors.js").DisposalError;
 export type InvalidSignerError = import("./errors.js").InvalidSignerError;
 export type ProviderError = import("./errors.js").ProviderError;
 export type ProviderRequiredError = import("./errors.js").ProviderRequiredError;

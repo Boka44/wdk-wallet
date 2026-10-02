@@ -180,4 +180,16 @@ describe('WalletManager', () => {
         .toThrow(new NoSuchElementError('No signer found with name "ledger".'))
     })
   })
+
+  describe('dispose', () => {
+    test('should expose the disposed state', () => {
+      const wallet = new DummyWalletManager(new DummySigner())
+
+      expect(wallet.disposed).toBe(false)
+
+      wallet.dispose()
+
+      expect(wallet.disposed).toBe(true)
+    })
+  })
 })

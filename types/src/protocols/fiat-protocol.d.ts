@@ -18,6 +18,7 @@ export interface IFiatProtocol {
      * @param {BuyOptions} options - The options for the buy operation.
      * @returns {Promise<BuyResult>} The operation's result.
      * @throws {AccountRequiredError} If the protocol requires a full account to perform a purchase.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the buy options are not valid.
      * @throws {ProviderRequiredError} If the method requires a provider.
      * @throws {ProviderError} If the provider fails to perform the purchase.
@@ -43,6 +44,7 @@ export interface IFiatProtocol {
      * @param {SellOptions} options - The options for the sell operation.
      * @returns {Promise<SellResult>} The operation's result.
      * @throws {AccountRequiredError} If the protocol requires a full account to perform a sale.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the buy options are not valid.
      * @throws {ProviderRequiredError} If the method requires a provider.
      * @throws {ProviderError} If the provider fails to perform the sale.
@@ -139,6 +141,7 @@ export default abstract class FiatProtocol implements IFiatProtocol {
      * @param {BuyOptions} options - The options for the buy operation.
      * @returns {Promise<BuyResult>} The URL for the user to complete the purchase.
      * @throws {AccountRequiredError} If the protocol requires a full account to perform a purchase.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the buy options are not valid.
      * @throws {ProviderRequiredError} If the method requires a provider.
      * @throws {ProviderError} If the provider fails to perform the purchase.
@@ -166,6 +169,7 @@ export default abstract class FiatProtocol implements IFiatProtocol {
      * @param {SellOptions} options - The options for the sell operation.
      * @returns {Promise<SellResult>} The URL for the user to complete the sale.
      * @throws {AccountRequiredError} If the protocol requires a full account to perform a sale.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the buy options are not valid.
      * @throws {ProviderRequiredError} If the method requires a provider.
      * @throws {ProviderError} If the provider fails to perform the sale.
@@ -216,6 +220,7 @@ export default abstract class FiatProtocol implements IFiatProtocol {
 export type IWalletAccountReadOnly = import("../wallet-account-read-only.js").IWalletAccountReadOnly;
 export type IWalletAccount = import("../wallet-account.js").IWalletAccount;
 export type AccountRequiredError = import("./errors.js").AccountRequiredError;
+export type DisposalError = import("./errors.js").DisposalError;
 export type BuyError = import("./errors.js").BuyError;
 export type MaximumFeeExceededError = import("./errors.js").MaximumFeeExceededError;
 export type NoSuchElementError = import("./errors.js").NoSuchElementError;

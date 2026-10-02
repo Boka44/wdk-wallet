@@ -24,6 +24,7 @@ export interface IWalletAccount<TSignedTransaction = unknown> extends IWalletAcc
      *
      * @param {string} message - The message to sign.
      * @returns {Promise<string>} The message's signature.
+     * @throws {DisposalError} If the account has been disposed.
      */
     sign(message: string): Promise<string>;
     /**
@@ -32,6 +33,7 @@ export interface IWalletAccount<TSignedTransaction = unknown> extends IWalletAcc
      * @param {Transaction} tx - The transaction to sign.
      * @returns {Promise<TSignedTransaction>} The signed transaction.
      * @throws {ValueError} If the transaction is not valid.
+     * @throws {DisposalError} If the account has been disposed.
      */
     signTransaction(tx: Transaction): Promise<TSignedTransaction>;
     /**
@@ -52,6 +54,7 @@ export interface IWalletAccount<TSignedTransaction = unknown> extends IWalletAcc
      * @throws {ProviderError} If the provider fails to perform the transaction.
      * @throws {TransactionError} If the transaction fails with an error.
      * @throws {MaximumFeeExceededError} If the the costs of the transaction exceeds the transaction max. fee option.
+     * @throws {DisposalError} If the account has been disposed.
      */
     sendTransaction(tx: Transaction | TSignedTransaction): Promise<TransactionResult>;
     /**
@@ -76,6 +79,7 @@ export interface IWalletAccount<TSignedTransaction = unknown> extends IWalletAcc
      * @throws {ProviderError} If the provider fails to perform the transfer.
      * @throws {TransferError} If the transfer fails with an error.
      * @throws {MaximumFeeExceededError} If the the costs of the transfer exceeds the transfer max. fee option.
+     * @throws {DisposalError} If the account has been disposed.
      */
     transfer(options: TransferOptions): Promise<TransferResult>;
     /**
@@ -89,6 +93,7 @@ export type Transaction = import("./wallet-account-read-only.js").Transaction;
 export type TransactionResult = import("./wallet-account-read-only.js").TransactionResult;
 export type TransferOptions = import("./wallet-account-read-only.js").TransferOptions;
 export type TransferResult = import("./wallet-account-read-only.js").TransferResult;
+export type DisposalError = import("./errors.js").DisposalError;
 export type InvalidTokenError = import("./errors.js").InvalidTokenError;
 export type MaximumFeeExceededError = import("./errors.js").MaximumFeeExceededError;
 export type ProviderError = import("./errors.js").ProviderError;

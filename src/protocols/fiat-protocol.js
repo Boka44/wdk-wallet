@@ -20,6 +20,7 @@ import { NotImplementedError } from './errors.js'
 /** @typedef {import('../wallet-account.js').IWalletAccount} IWalletAccount */
 
 /** @typedef {import('./errors.js').AccountRequiredError} AccountRequiredError */
+/** @typedef {import('./errors.js').DisposalError} DisposalError */
 /** @typedef {import('./errors.js').BuyError} BuyError */
 /** @typedef {import('./errors.js').MaximumFeeExceededError} MaximumFeeExceededError */
 /** @typedef {import('./errors.js').NoSuchElementError} NoSuchElementError */
@@ -160,6 +161,7 @@ export class IFiatProtocol {
    * @param {BuyOptions} options - The options for the buy operation.
    * @returns {Promise<BuyResult>} The operation's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a purchase.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the buy options are not valid.
    * @throws {ProviderRequiredError} If the method requires a provider.
    * @throws {ProviderError} If the provider fails to perform the purchase.
@@ -191,6 +193,7 @@ export class IFiatProtocol {
    * @param {SellOptions} options - The options for the sell operation.
    * @returns {Promise<SellResult>} The operation's result.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a sale.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the buy options are not valid.
    * @throws {ProviderRequiredError} If the method requires a provider.
    * @throws {ProviderError} If the provider fails to perform the sale.
@@ -305,6 +308,7 @@ export default class FiatProtocol {
    * @param {BuyOptions} options - The options for the buy operation.
    * @returns {Promise<BuyResult>} The URL for the user to complete the purchase.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a purchase.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the buy options are not valid.
    * @throws {ProviderRequiredError} If the method requires a provider.
    * @throws {ProviderError} If the provider fails to perform the purchase.
@@ -338,6 +342,7 @@ export default class FiatProtocol {
    * @param {SellOptions} options - The options for the sell operation.
    * @returns {Promise<SellResult>} The URL for the user to complete the sale.
    * @throws {AccountRequiredError} If the protocol requires a full account to perform a sale.
+   * @throws {DisposalError} If the account has been disposed.
    * @throws {ValueError} If the buy options are not valid.
    * @throws {ProviderRequiredError} If the method requires a provider.
    * @throws {ProviderError} If the provider fails to perform the sale.

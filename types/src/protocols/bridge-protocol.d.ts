@@ -6,6 +6,7 @@ export interface IBridgeProtocol {
      * @param {BridgeOptions} options - The bridge's options.
      * @returns {Promise<BridgeResult>} The bridge's result.
      * @throws {AccountRequiredError} If the protocol requires a full account to perform a bridge.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the bridge options are not valid.
      * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -70,6 +71,7 @@ export default abstract class BridgeProtocol implements IBridgeProtocol {
      * @param {BridgeOptions} options - The bridge's options.
      * @returns {Promise<BridgeResult>} The bridge's result.
      * @throws {AccountRequiredError} If the protocol requires a full account to perform a bridge.
+     * @throws {DisposalError} If the account has been disposed.
      * @throws {ValueError} If the bridge options are not valid.
      * @throws {InvalidTokenError} If the token is not a valid ERC 20 token's address.
      * @throws {ProviderRequiredError} If the method requires a provider.
@@ -95,6 +97,7 @@ export default abstract class BridgeProtocol implements IBridgeProtocol {
 export type IWalletAccountReadOnly = import("../wallet-account-read-only.js").IWalletAccountReadOnly;
 export type IWalletAccount = import("../wallet-account.js").IWalletAccount;
 export type AccountRequiredError = import("./errors.js").AccountRequiredError;
+export type DisposalError = import("./errors.js").DisposalError;
 export type BridgeError = import("./errors.js").BridgeError;
 export type InvalidTokenError = import("./errors.js").InvalidTokenError;
 export type MaximumFeeExceededError = import("./errors.js").MaximumFeeExceededError;
